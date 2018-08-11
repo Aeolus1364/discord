@@ -1,7 +1,9 @@
 import discord
 import subprocess
 
-TOKEN = ''
+with open("token", "r") as f:
+    TOKEN = f.read()
+
 
 client = discord.Client()
 
@@ -10,7 +12,6 @@ oof = {}
 
 @client.event
 async def on_message(message):
-    # we do not want the bot to reply to itself
     if message.author == client.user:
         return
 
