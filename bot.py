@@ -67,7 +67,7 @@ async def on_message(message):
             await client.send_message(message.channel, "Congratulations to {0.author.mention} on their first oof!".format(message))
 
     if message.content.startswith("!oof"):
-        await client.send_message(message.channel, f"You have oofed {oof[message.author]} times!")
+        await client.send_message(message.channel, "You have oofed {} times!".format(oof[message.author]))
 
     if message.content.startswith("!python") or message.content.startswith("!y"):
         msg = message.content.split(" ")
