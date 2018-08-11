@@ -1,5 +1,4 @@
 import discord
-import googlesearch
 import subprocess
 
 TOKEN = 'NDc0NzM2MDc3ODUzMTYzNTIx.DkU1NA.DUc2hPNjpmOrDKFNrcGPAmgD24s'
