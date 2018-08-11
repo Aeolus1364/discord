@@ -1,7 +1,7 @@
 import discord
 import subprocess
 
-TOKEN = 'NDc0NzM2MDc3ODUzMTYzNTIx.DkU1NA.DUc2hPNjpmOrDKFNrcGPAmgD24s'
+TOKEN = ''
 
 client = discord.Client()
 
@@ -77,7 +77,7 @@ async def on_message(message):
         file.write(msg)
         file.close()
 
-        cmd = ['python', 'test.py']
+        cmd = ['python3', 'test.py']
         output = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 
         d = output.decode('utf-8')
@@ -119,7 +119,7 @@ async def on_message(message):
         msg = message.content.split(" ")
         del msg[0]
 
-        cmd = ['python', msg[0]]
+        cmd = ['python3', msg[0]]
         output = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 
         d = output.decode('utf-8')
