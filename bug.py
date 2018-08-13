@@ -1,51 +1,35 @@
-import discord
-import os
-import pickle
-
-with open("token", "r") as f:
-    TOKEN = f.read()
-
-try:
-    f = open("data", "rb")
-    count = pickle.load(f)
-    f.close()
-except FileNotFoundError:
-    print("No data found, generating new file.")
-    count = 0
-    f = open("data", "w")
-    f.close()
-    pickle.dump(count, open("data", "wb"))
-
-client = discord.Client()
-
-author = "Aeolus#4005"
-
-print(count)
-
-@client.event
-async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print(client.servers)
-    print('------')
+stopwords = open("stopwords", "r").read()
 
 
-@client.event
-async def on_message(message):
-    global author
-    if message.content.startswith('!stop'):
-        if str(message.author) == author:
-            print("test")
-            client.close()
+class Bug:
+    def __init__(self):
+        self.name = ""
+        self.words = {}
+        self.stopwords = stopwords
 
-    if message.content.startswith('!add'):
-        global count
-        count += 1
-        await client.send_message(message.channel, str(count))
+    def digest(self, text):
+        if not text[0] == "!":
+            text = text.lower()
+            lines = text.splitlines()
+            text = " ".join(lines)
+            words = text.split(" ")
+            fwords = []
 
+            for w in words:
+                nw = ""
+                for c in w:
+                    if c == "'":
+                        break
+                    elif not c == "!" and not c == "?" and not c == ".":
+                        nw += c
+                if nw not in self.stopwords:
+                    fwords.append(nw)
 
-client.start(TOKEN)
+            for w in fwords:
+                w = w.replace(",", "")
+                if w in self.words:
+                    self.words[w] += 1
+                else:
+                    self.words[w] = 1
 
-print("done")
-pickle.dump(count, open("data", "wb"))
+            print("digested {} words".format(len(fwords)))

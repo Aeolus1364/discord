@@ -19,7 +19,6 @@ async def on_member_join(member):
     await client.add_roles(member, role)
 
 
-
 @client.command(pass_context=True)
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
@@ -40,3 +39,4 @@ async def clear(ctx, amount=100):
 
 
 client.run(TOKEN)
+
