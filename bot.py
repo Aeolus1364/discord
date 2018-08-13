@@ -52,8 +52,8 @@ async def oof(ctx, member: discord.Member=None):
     await client.say("{} ".format(member.mention) + s("has oofed {} times!".format(users[member]['oof'])))
 
 
-@client.command(pass_context=True, name="bug", aliases=["b"])
-async def bug(ctx, *args):
+@client.command(pass_context=True, name="b", aliases=["bug"])
+async def b(ctx, *args):
     author = ctx.message.author
     bug = users[author]['bug']
     nargs = len(args)
